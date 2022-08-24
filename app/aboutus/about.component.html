@@ -1,0 +1,45 @@
+<ActionBar title="About Us" class="action-bar">
+    <NavigationButton android.systemIcon="ic_menu_back" (tap)="goBack()"></NavigationButton>
+</ActionBar>
+<ScrollView orientation="vertical">
+    <GridLayout class="m-5" rows="auto auto auto">
+        <StackLayout row="0" class="p-10 border">
+            <Label class="h2" [text]="'Our History'"></Label>
+            <Label class="body" [text]="'Started in 2010, Ristorante con Fusion quickly established itself as a culinary icon par excellence in Hong Kong. With its unique brand of world fusion cuisine that can be found nowhere else, it enjoys patronage from the A-list clientele in Hong Kong.  Featuring four of the best three-star Michelin chefs in the world, you never know what will arrive on your plate the next time you visit us. The restaurant traces its humble beginnings to The Frying Pan, a successful chain started by our CEO, Mr. Peter Pan, that featured for the first time the world\'s best cuisines in a pan.'" textWrap="true">
+            </Label>
+        </StackLayout>
+        <Label row="1" height="40" class="p-10 m-t-10 h3" text="Corporate Leadership"></Label>
+        <ListView row="2" [items]="leaders" class="list-group p-10" *ngIf="leaders">
+            <ng-template let-leader="item">
+
+                <!-- Both options work... -->
+
+                <!-- <StackLayout orientation="horizontal" class="list-group-item" rows="auto" columns="* *">
+                    <StackLayout class="m-5" row="0" col="0" verticalAlignment="center">
+                        <Image [src]="baseURL + leader.image" class="img-circle"
+                        rowSpan="2" height="50" width="50"></Image>
+                    </StackLayout>
+                    <StackLayout class="m-5" row="0" col="1">
+                        <Label class="list-group-item-heading" [text]="leader.name"></Label>
+                        <Label class="list-group-item-text" [text]="leader.designation"></Label>
+                        <Label class="body" [text]="leader.description" textWrap="true"></Label>
+                    </StackLayout>
+                </StackLayout>  -->
+
+                <GridLayout rows="auto" columns="auto, *" class="list-group-item">
+                    <Image class="m-10" [src]="baseURL + leader.image" class="img-circle"
+                        rowSpan="2" height="50" width="50"></Image>                    
+                    <StackLayout class="m-10" row="0" col="1">
+                        <Label class="list-group-item-heading" [text]="leader.name"></Label>
+                        <Label class="list-group-item-text" [text]="leader.designation"></Label>
+                        <Label class="body" [text]="leader.description" textWrap="true"></Label>
+                    </StackLayout>
+                </GridLayout>
+
+            </ng-template>
+        </ListView>
+        <ActivityIndicator busy="true" *ngIf="!(leaders || errMess)" width="50" height="50" class="activity-indicator"></ActivityIndicator>
+        <Label *ngIf="errMess" [text]="'Error: ' + errMess"></Label>
+    </GridLayout>
+    
+</ScrollView>

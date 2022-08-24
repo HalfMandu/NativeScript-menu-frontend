@@ -1,0 +1,29 @@
+<ActionBar title="Contact Us" class="action-bar">
+    <NavigationButton android.systemIcon="ic_menu_back" (tap)="goBack()"></NavigationButton>
+</ActionBar>
+<ScrollView orientation="vertical">
+    <GridLayout class="m-5" rows="auto, auto">
+
+        <!-- Contact Information -->
+        <StackLayout row="0" class="p-10 border">
+            <Label class="h3 text-primary" text="Contact Information"></Label>
+            <Label class="body text-primary" text="
+                121, Clear Water Bay Road
+                Clear Water Bay, Kowloon
+                HONG KONG
+                Tel: +852 1234 5678
+                Fax: +852 8765 4321
+                Email:confusion@food.net" textWrap="true">    
+            </Label>
+        </StackLayout>
+
+        <!-- Contact Buttons  -->
+        <GridLayout row="1" orientation="horizontal" rows="*" columns="*, *" class="m-t-20">
+            <Button row="0" col="0" [text]="('fa-phone' | fonticon) + ' Call'" 
+            class="btn btn-rounded-sm btn-outline no-border fa " (tap)="callRestaurant()"></Button>
+            <Button row="0" col="1" [text]="('fa-envelope-o' | fonticon) + ' Email'" 
+            class="btn btn-rounded-sm btn-outline no-border fa" (tap)="sendEmail()"></Button>
+        </GridLayout> 
+
+    </GridLayout>
+</ScrollView>

@@ -1,0 +1,36 @@
+<ActionBar title="Reserve Table" class="action-bar">
+</ActionBar>
+<StackLayout orientation="vertical" tkmaincontent="" class="page">
+
+    <!-- Reservation form -->
+    <GridLayout id="resForm" class="m-5" rows="auto auto auto auto" columns="*, *" 
+        [formGroup]="reservationForm" [visibility]="!showSubmittedRes ? 'visible' : 'collapsed'">
+        <Label class="h3 m-15" row="0" col="0" text="No. of Guests" textWrap="true"></Label>
+        <TextField class="input input-border" id="textGuests" hint="Enter Number of Guests" [text]=''
+            (tap)="createModalView('guest')" (textChange)="onGuestChange($event)" row="0" col="1"
+            formControlName="guests"></TextField>
+        <Label class="h3 m-15" row="1" col="0" text="Smoking?" textWrap="true"></Label>
+        <Switch class="m-15" row="1" col="1" checked="false" (checkedChange)="onSmokingChecked($event)"
+            formControlName="smoking"></Switch>
+        <Label class="h3 m-15" row="2" col="0" text="Date and Time" textWrap="true"></Label>
+        <TextField class="input input-border" id="textDateTime" hint="Enter Date and Time"
+            (tap)="createModalView('date-time')" (textChange)="onDateTimeChange($event)" row="2" col="1"
+            formControlName="dateTime"></TextField>
+        <Button class="btn btn-primary btn-active m-15" row="3" col="0" text="Submit" 
+            (tap)="onSubmit()" [disabled]="reservationForm.invalid"></Button>
+    </GridLayout>
+
+    <!-- Submitted reservation -->
+    <GridLayout horizontalAlignment="center" verticalAlignment="top" id="resSubmitted" 
+        class="m-5" rows="auto auto auto" columns="*, *"
+        [visibility]="showSubmittedRes ? 'visible' : 'collapsed'">
+        <Label class="h3 m-15" row="0" col="0" text="No. of Guests" textWrap="true"></Label>
+        <Label class="h3 m-15" id="textGuests" [text]="reservation.guests" row="0" col="1"></Label>
+        <Label class="h3 m-15" row="1" col="0" text="Smoking?" textWrap="true"></Label>
+        <Label class="h3 m-15" row="1" col="1" [text]="reservation.smoking"></Label>
+        <Label class="h3 m-15" row="2" col="0" text="Date and Time" textWrap="true"></Label>
+        <Label class="h3 m-15" id="textDateTime" [text]="reservation.dateTime | date : 'medium' " row="2" col="1"></Label>
+    </GridLayout>
+
+</StackLayout>
+    
